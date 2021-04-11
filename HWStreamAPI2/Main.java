@@ -45,12 +45,13 @@ public class Main {
         long minorAges = persons.stream()
                 .filter(x -> x.getAge() <= 18)
                 .count();
-        System.out.println("Зарегестрировано несовершеннолетних:\n" + minorAges);
+        System.out.println("Зарегестрировано несовершеннолетних: " + minorAges + "\n");
 
         // Стрим для выявления призывников
         potentiallyRecruitPeople = persons.stream()
                 .filter(x -> x.getAge() >= 18)
                 .filter(x -> x.getAge() <= 27)
+                .filter(x -> x.getSex().equals(Sex.MAN))
                 .sorted(Comparator.comparing(x -> x.getFamily()))
                 .map(x -> x.getFamily() + " " + x.getName())
                 .collect(Collectors.toList());
